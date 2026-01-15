@@ -1,4 +1,6 @@
+-- ======================
 -- Nettoyage
+-- ======================
 DROP DATABASE IF EXISTS universe;
 CREATE DATABASE universe;
 \connect universe;
@@ -72,7 +74,7 @@ CREATE TABLE moon (
 );
 
 -- ======================
--- MORE INFO (lié aux planètes, simple et clair)
+-- MORE INFO
 -- ======================
 CREATE TABLE more_info (
     more_info_id SERIAL PRIMARY KEY,
@@ -84,31 +86,68 @@ CREATE TABLE more_info (
         REFERENCES planet(planet_id)
 );
 
-INSERT INTO galaxy (name, area, volume, age, material, has_life, has_water)
-VALUES
-('galaxy1', 500, 750, 1500.75, 'gas', false, false),
-('galaxy2', 600, 800, 1600.25, 'dust', false, false);
+-- ======================
+-- INSERT DATA
+-- ======================
 
-INSERT INTO star (galaxy_id, name)
-VALUES
+-- GALAXY (6)
+INSERT INTO galaxy (name, area, volume, age, material, has_life, has_water) VALUES
+('galaxy1', 500, 750, 1500.75, 'gas', false, false),
+('galaxy2', 600, 800, 1600.25, 'dust', false, false),
+('galaxy3', 700, 900, 1700.50, 'plasma', false, false),
+('galaxy4', 800, 950, 1800.10, 'gas', false, false),
+('galaxy5', 900, 1000, 1900.80, 'dust', false, false),
+('galaxy6', 1000, 1100, 2000.00, 'unknown', false, false);
+
+-- STAR (6)
+INSERT INTO star (galaxy_id, name) VALUES
 (1, 'star1'),
 (1, 'star2'),
-(2, 'star3');
+(2, 'star3'),
+(3, 'star4'),
+(4, 'star5'),
+(5, 'star6');
 
-INSERT INTO planet (star_id, name, has_life)
-VALUES
+-- PLANET (12)
+INSERT INTO planet (star_id, name, has_life) VALUES
 (1, 'planet1', true),
 (1, 'planet2', false),
-(2, 'planet3', false);
+(2, 'planet3', false),
+(2, 'planet4', false),
+(3, 'planet5', false),
+(3, 'planet6', false),
+(4, 'planet7', false),
+(4, 'planet8', false),
+(5, 'planet9', false),
+(5, 'planet10', false),
+(6, 'planet11', false),
+(6, 'planet12', false);
 
-INSERT INTO moon (planet_id, name)
-VALUES
+-- MOON (20)
+INSERT INTO moon (planet_id, name) VALUES
 (1, 'moon1'),
 (1, 'moon2'),
-(2, 'moon3');
+(1, 'moon3'),
+(2, 'moon4'),
+(2, 'moon5'),
+(3, 'moon6'),
+(3, 'moon7'),
+(4, 'moon8'),
+(4, 'moon9'),
+(5, 'moon10'),
+(6, 'moon11'),
+(6, 'moon12'),
+(7, 'moon13'),
+(8, 'moon14'),
+(9, 'moon15'),
+(10, 'moon16'),
+(11, 'moon17'),
+(11, 'moon18'),
+(12, 'moon19'),
+(12, 'moon20');
 
-INSERT INTO more_info (planet_id, name, description)
-VALUES
+-- MORE_INFO (3)
+INSERT INTO more_info (planet_id, name, description) VALUES
 (1, 'info1', 'Planète habitable'),
-(2, 'info2', 'Planète gazeuse');
-
+(2, 'info2', 'Planète gazeuse'),
+(3, 'info3', 'Planète rocheuse');
